@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PadFootingsInsertion", "PadFootingsInsertion\PadFootingsInsertion.csproj", "{924F094E-50BA-440B-8EF0-3354D13096B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{924F094E-50BA-440B-8EF0-3354D13096B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{924F094E-50BA-440B-8EF0-3354D13096B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{924F094E-50BA-440B-8EF0-3354D13096B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{924F094E-50BA-440B-8EF0-3354D13096B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E67AC9A1-B001-433D-A7C7-AF517A8E82E3}
+	EndGlobalSection
+EndGlobal
