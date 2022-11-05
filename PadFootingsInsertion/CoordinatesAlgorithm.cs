@@ -16,7 +16,7 @@ namespace PadFootingsInsertion
             int final = int.Parse(cor[0]);
             for (int i = 1; i <= int.Parse(cor[0]); i++)
             {
-                double append = (double)i * double.Parse(cor[1]);
+                double append =double.Parse(cor[1]);
                 result.Add(append);
             }
             return result;
@@ -28,14 +28,13 @@ namespace PadFootingsInsertion
             List<double> doubles = new List<double>();
             foreach (string point in x)
             {
-                int index = x.IndexOf(point);
+                int pointIndex = x.IndexOf(point);
                 if (point.Contains("*"))
                 {
-                    List<double> conversionList = new List<double>();
-                    conversionList = SplitToBlocks(point);
+                    var conversionList = SplitToBlocks(point);
                     for(int i = 0; i < conversionList.Count; i++)
                     {
-                        doubles.Add(doubles[index - 1] + conversionList[i]);
+                        doubles.Add(doubles[doubles.Count - 1] + conversionList[i]);
                     }
                 }
                 else
@@ -46,7 +45,7 @@ namespace PadFootingsInsertion
                     }
                     else
                     {
-                        doubles.Add(doubles[index - 1] + double.Parse(point));
+                        doubles.Add(doubles[doubles.Count - 1] + double.Parse(point));
                     }
                 }
             }
