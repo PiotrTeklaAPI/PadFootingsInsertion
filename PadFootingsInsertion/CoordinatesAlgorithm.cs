@@ -9,37 +9,48 @@ namespace PadFootingsInsertion
 {
     public class CoordinatesAlgorithm
     {
-        public static List<string> SplitToBlocks(string input)
+        public static List<double> SplitToBlocks(string input)
         {
-            //List<string> cor = new List<string>();
-            //input = input.Replace('.', ',');
             var cor = input.Split('*').ToList();
+            List <double> result = new List<double>();
             int final = int.Parse(cor[0]);
             for (int i = 1; i <= int.Parse(cor[0]); i++)
             {
                 double append = (double)i * double.Parse(cor[1]);
-                cor.Add(append.ToString());
+                result.Add(append);
             }
-            cor.RemoveRange(0, 2);
-            return cor;
+            return result;
         }
-        public static List<string> SplitToNumbers(string fullXCoordinates)
+        public static List<double> SplitToNumbers(string fullXCoordinates)
         {
             fullXCoordinates = fullXCoordinates.Replace('.', ',');
             var x = fullXCoordinates.Split(' ').ToList();
-            List<string> fullList = new List<string>();
+            List<double> doubles = new List<double>();
             foreach (string point in x)
             {
+                int index = x.IndexOf(point);
                 if (point.Contains("*"))
                 {
-                    fullList = fullList.Concat(SplitToBlocks(point)).ToList();
+                    List<double> conversionList = new List<double>();
+                    conversionList = SplitToBlocks(point);
+                    for(int i = 0; i < conversionList.Count; i++)
+                    {
+                        doubles.Add(doubles[index - 1] + conversionList[i]);
+                    }
                 }
                 else
                 {
-                    fullList.Add(point);
+                    if(x.IndexOf(point) == 0)
+                    {
+                        doubles.Add(double.Parse(point));
+                    }
+                    else
+                    {
+                        doubles.Add(doubles[index - 1] + double.Parse(point));
+                    }
                 }
             }
-            return fullList;
+            return doubles;
         }
         public static double DoubleConversion(string value)
         {
@@ -47,16 +58,14 @@ namespace PadFootingsInsertion
             return result;
         }
 
-        public static List<TSG.Point> GetInsertionPoints(List<string> xList, List<string> yList)
+        public static List<TSG.Point> GetInsertionPoints(List<double> xList, List<double> yList)
         {
-            List<double> xPoints = xList.Select(x => DoubleConversion(x)).ToList();
-            List<double> yPoints = yList.Select(y => DoubleConversion(y)).ToList();
             List<TSG.Point> Coordinates = new List<TSG.Point>();
-            for (int i = 0; i < xPoints.Count; i++)
+            for (int i = 0; i < xList.Count; i++)
             {
-                for (int j = 0; j < yPoints.Count; j++)
+                for (int j = 0; j < yList.Count; j++)
                 {
-                    TSG.Point point = new TSG.Point(xPoints[i], yPoints[j], 0.0);
+                    TSG.Point point = new TSG.Point(xList[i], yList[j], 0.0);
                     Coordinates.Add(point);
                 }
             }

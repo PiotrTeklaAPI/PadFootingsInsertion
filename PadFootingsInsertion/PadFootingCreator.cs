@@ -15,12 +15,14 @@ namespace PadFootingsInsertion
         {
             Beam beam = new Beam(Beam.BeamTypeEnum.PAD_FOOTING);
             beam.Material = new Material { MaterialString = "Concrete_Undefined" };
-            beam.Profile = new Profile { ProfileString = "200*400" };
+            beam.Profile = new Profile { ProfileString = "400*400" };
+            beam.Position.Plane = Position.PlaneEnum.MIDDLE;
+            beam.Position.Depth = Position.DepthEnum.MIDDLE;
 
             foreach (TSG.Point point in coordinates)
             {
                 beam.StartPoint = point;
-                beam.EndPoint = point + new TSG.Point(0, 0, 500);
+                beam.EndPoint = point + new TSG.Point(0, 0, 200);
                 beam.Insert();
             }
             

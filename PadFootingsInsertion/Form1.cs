@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Tekla.Structures.Model;
 using Tekla.Structures.Model.Operations;
 using TSG = Tekla.Structures.Geometry3d;
+using Tekla.Structures.Catalogs;
+using Tekla.Structures.Dialog;
 
 namespace PadFootingsInsertion
 {
@@ -38,8 +40,8 @@ namespace PadFootingsInsertion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<string> xList = CoordinatesAlgorithm.SplitToNumbers(GridInfo.xCor);
-            List<string> yList = CoordinatesAlgorithm.SplitToNumbers(GridInfo.yCor);
+            List<double> xList = CoordinatesAlgorithm.SplitToNumbers(GridInfo.xCor);
+            List<double> yList = CoordinatesAlgorithm.SplitToNumbers(GridInfo.yCor);
             List<TSG.Point> coordinates = CoordinatesAlgorithm.GetInsertionPoints(xList, yList);
             PadFootingCreator padFootingCreator = new PadFootingCreator();
             padFootingCreator.CreatePadFootings(coordinates);
@@ -49,6 +51,11 @@ namespace PadFootingsInsertion
         private void button2_Click(object sender, EventArgs e)
         {
             gridInfo.LoadGridFromModel();
+        }
+
+        private void materialCatalog1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
