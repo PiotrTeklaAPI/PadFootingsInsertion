@@ -13,7 +13,6 @@ namespace PadFootingsInsertion
         {
             var cor = input.Split('*').ToList();
             List <double> result = new List<double>();
-            int final = int.Parse(cor[0]);
             for (int i = 1; i <= int.Parse(cor[0]); i++)
             {
                 double append =double.Parse(cor[1]);
